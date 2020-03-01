@@ -1,5 +1,13 @@
 const container = document.getElementById("container");
 
+cell.addEventListener('mouseover', 
+  e => e.target.classList.add('my-colour-class')
+)
+
+let currentColor = 'black'
+const colors = { black: 'black' }
+e => e.target.classList.add(colors[currentColor])
+
 function makeRows(rows, cols) {
     container.style.setProperty('--grid-rows', rows);
     container.style.setProperty('--grid-cols', cols);
