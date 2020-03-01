@@ -42,3 +42,7 @@
 	outline:1px solid #000;
 	display:inline-block;
 }
+
+.my-color-class {
+  background-color: blue;
+}
