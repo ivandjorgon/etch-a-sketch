@@ -1,22 +1,40 @@
-const container = document.getElementById("container");
+let grid = prompt();
+let div = document.getElementById("container");
 
-let currentColor = 'black'
-const colors = { black: 'black' }
+let reset = document.getElementById("reset");
+reset.addEventListener("click", () => reload());
+function reload() {
+  console.log("reload");
+  location.reload();
+}
 
-function makeRows(rows, cols) {
-    container.style.setProperty('--grid-rows', rows);
-    container.style.setProperty('--grid-cols', cols);
-    for (c = 0; c < (rows * cols); c++) {
-      let cell = document.createElement("div");
-      //cell.innerText = (c + 1);
-      container.appendChild(cell).className = "grid-item";
-      cell.addEventListener('mouseover', 
-        e => e.target.classList.add('my-colour-class')
-      );
-      //e => e.target.classList.add(colors[currentColor])
-      console.log('makeRows');
-    };
-  };
+if (parseInt(grid) <= 65) {
+  for (let i = 0; i < parseInt(grid) * parseInt(grid); i++) {
+    var node = document.createElement("div");
+    node.classList.add("elem");
+    div.appendChild(node);
+    div.classList.add("sketch");
+    document.querySelector(".btn").style.display = "flex";
+  }
+} else {
+  alert("Enter a number between 0 and 65");
+  location.reload();
+}
 
-makeRows(16, 16);
-console.log(document.getElementById("container"));
+let elem = document.querySelectorAll(".elem");
+let clear = document.querySelector("#clear");
+
+elem.forEach(element => {
+  clear.addEventListener("click", () => remove(element));
+  element.addEventListener("mouseenter", () => {
+    event(element);
+  });
+});
+function remove(element) {
+  element.classList.remove("hover");
+}
+function event(element) {
+  element.classList.add("hover");
+}
+
+div.style.gridTemplateColumns = `repeat(${parseInt(grid)}, 1fr)`;
